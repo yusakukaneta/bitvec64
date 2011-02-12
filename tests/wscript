@@ -1,0 +1,22 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+top = '.'
+out = 'build'
+cflags = '-O9 -Wall -W -Wformat=2 -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wfloat-equal -Wpointer-arith'
+
+def configure(conf):
+    conf.check_cfg(path='gtest-config',
+                   args='--cppflags --cxxflags --ldflags --libs',
+                   package='',
+                   uselib_store='gtest',
+                   mandatory=False)
+
+def build(bld): 
+    bld.program(features='test',
+                source='test_bitvec.cpp',
+                includes='../src',
+                lib='gtest_main',
+                cflags=cflags,
+                target='test_bitvec',
+                use='bitvec64 gtest')
