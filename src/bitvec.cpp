@@ -180,6 +180,7 @@ void Bitvec::inplace_rshift(std::size_t wid) {
   }
 }
 
+
 void Bitvec::inplace_not() {
   for (std::size_t i = 0; i < nblocks_; ++i) {
     blocks_[i] = ~blocks_[i];
